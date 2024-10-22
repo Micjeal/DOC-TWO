@@ -1,0 +1,73 @@
+﻿<Page
+    x:Class="DOC_TWO.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:DOC_TWO"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <CommandBar Grid.Row="0">
+            <AppBarButton Icon="Add" Label="New Tab"
+                          Click="AddNewTab_Click"/>
+            <AppBarButton Icon="Back" Label="Back" 
+                          Click="BackButton_Click"/>
+            <AppBarButton Icon="Forward" Label="Forward" 
+                          Click="ForwardButton_Click"/>
+            <AppBarButton Icon="Preview" Label="Previews"
+                          Click="PreviewButton_Click"/>
+
+            
+        </CommandBar>
+
+        <Pivot x:Name="TabPivot" Grid.Row="1">
+            <PivotItem Header="Tab 1 : MICHEAL">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    
+                    <WebView x:Name="WebView1" Grid.Row="1"/>
+                </Grid>
+                
+            </PivotItem>
+        </Pivot>
+        
+
+        <Popup x:Name="PreviewPopup" Grid.RowSpan="2">
+            <Border Background= "PeachPuff" Padding="20">
+                <StackPanel>
+                    <TextBlock Text=" Previews" 
+                               Style="{ThemeResource HeaderTextBlockStyle}"
+                               Margin="0,0,0,20"/>
+                    <ListView x:Name="PreviewList" 
+                              SelectionChanged="PreviewList_SelectionChanged">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <Image Width="200" Height="150" 
+                                           Source="{Binding ThumbnailSource}"/>
+                                    <TextBlock Text="{Binding Header}" 
+                                               HorizontalAlignment="Center"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <Button Content="Close" Click="ClosePreview_Click" 
+                            HorizontalAlignment="Center" Margin="0,20,0,0"/>
+                </StackPanel>
+            </Border>
+        </Popup>
+    </Grid>
+
+    
+</Page>
